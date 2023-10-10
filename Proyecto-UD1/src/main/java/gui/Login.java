@@ -25,7 +25,7 @@ public class Login extends JFrame implements ActionListener {
 		setBounds(0, 0, 300, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setVisible(true);
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -57,6 +57,8 @@ public class Login extends JFrame implements ActionListener {
 		btnIniciarSesion.setBounds(80, 145, 140, 23);
 		btnIniciarSesion.addActionListener(this);
 		contentPane.add(btnIniciarSesion);
+
+		setVisible(true);
 	}
 
 	@Override
