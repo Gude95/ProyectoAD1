@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import model.App;
+import model.Session;
 
 public class Login extends JFrame implements ActionListener {
 	private JPanel contentPane;
@@ -63,5 +64,18 @@ public class Login extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnIniciarSesion) {
+			System.out.println("Botón pulsado");
+			String user = textoUsuario.getText();
+			String pass = textoContraseña.getText();
+
+			Session session = app.getSession();
+			session.login(user,pass);
+			System.out.println(session.isSignIn());
+		}
+	}
+
+	public void btnIniciarSesionActionListener(ActionListener listener){
+		this.btnIniciarSesion.addActionListener(listener);
 	}
 }
