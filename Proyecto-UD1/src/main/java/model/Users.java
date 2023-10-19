@@ -19,7 +19,7 @@ public class Users {
         this.users = users;
     }
 
-    public static void addUser(User usuario) {
-
+    public  void addUser(User usuario) {
+        users.put(usuario.getName(),usuario);
     }
 }

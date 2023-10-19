@@ -8,6 +8,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import model.App;
+import model.FileHandler;
+import model.User;
+import model.Users;
 
 public class UserCreate extends JFrame implements ActionListener {
 
@@ -92,10 +95,23 @@ public class UserCreate extends JFrame implements ActionListener {
 		btnCancelar.setBounds(39, 299, 89, 23);
 		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
+		setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+	 if (e.getSource() == btnCrear){
+		 String nombre = textoNombre.getText();
+		 String pass = String.valueOf(textoContraseña.getPassword());
+		 int edad = Integer.parseInt(textoEdad.getText());
+		 String correo = textoCorreo.getText();
+		 User user = new User(nombre,pass,edad,correo);
+		 Users users = new Users();
+		 users.addUser(user);
+		 FileHandler fileHander = new FileHandler("usuarios.bin");
+		 System.out.println(users.getUsers());
+		 fileHander.almacenarUsuarios(users.getUsers());
+		 System.out.println("usuario creado");
+	 }
 	}
 }

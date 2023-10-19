@@ -102,6 +102,10 @@ public class User extends JFrame implements ActionListener {
 				System.out.println("Selección de archivo cancelada.");
 			}
 		}
+		if(e.getSource()== btnCrearNuevoUsuario){
+			new UserCreate(app);
+		}
+
 	}
 
 }

@@ -27,7 +27,9 @@ public class FileHandler {
             HashMap<String,User> listaUsers = (HashMap) ois.readObject();
 
             for (User usuario: listaUsers.values()) {
-                Users.addUser(usuario);
+                Users users = new Users();
+                users.addUser(usuario);
+                System.out.println(usuario.getPasswordHash());
             }
             System.out.println("usuarios obtenidos");
         } catch (FileNotFoundException e) {
