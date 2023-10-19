@@ -15,21 +15,23 @@ public class FileHandler {
     public void almacenarUsuarios(HashMap mapUsers) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))){
             out.writeObject(mapUsers);
+            System.out.println("usuarios almacenados en " + file.getName());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void leerUsuarios() {
+    public  void leerUsuarios() {
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("C:\\Users\\dam2_alu07\\Documents\\AccesoDatos\\productos.bin")))){
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
             HashMap<String,User> listaUsers = (HashMap) ois.readObject();
 
             for (User usuario: listaUsers.values()) {
                 Users.addUser(usuario);
             }
+            System.out.println("usuarios obtenidos");
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            File file = new File("usuarios.bin");
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

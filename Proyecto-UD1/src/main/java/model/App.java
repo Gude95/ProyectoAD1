@@ -15,8 +15,10 @@ public class App {
     public App() {
         FileHandler fileHander = new FileHandler(this.filename);
         this.users = new Users();
+        fileHander.leerUsuarios();
         fileHander.almacenarUsuarios(this.users.getUsers());
         this.session = new Session();
+
     }
 
     public Session getSession() {

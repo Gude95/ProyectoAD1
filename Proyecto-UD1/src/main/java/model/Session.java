@@ -8,7 +8,14 @@ public class Session {
     }
 
     public void login(String user, String pass) {
-        //this.user = new User("admin","admin", 60, "admin@admin.local");
+      Users map = new Users();
+        for (User usuario : map.getUsers().values()
+             ) {
+            if(user.equals(usuario.getName()) && pass.equals(usuario.getPasswordHash())){
+                System.out.println("datos correctos");
+                this.user=usuario;
+            }
+        }
     }
 
     public boolean isSignIn() {

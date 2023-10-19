@@ -65,17 +65,17 @@ public class Login extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnIniciarSesion) {
-			System.out.println("Botón pulsado");
 			String user = textoUsuario.getText();
 			String pass = textoContraseña.getText();
 
 			Session session = app.getSession();
 			session.login(user,pass);
-			System.out.println(session.isSignIn());
+			if (session.isSignIn()){
+				new User(app,user);
+			} else {
+				JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos", "Error",JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 
-	public void btnIniciarSesionActionListener(ActionListener listener){
-		this.btnIniciarSesion.addActionListener(listener);
-	}
 }

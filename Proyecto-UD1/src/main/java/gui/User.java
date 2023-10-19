@@ -84,6 +84,7 @@ public class User extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setVisible(true);
 	}
 
 	@Override
