@@ -14,25 +14,24 @@ public class App {
 
     public App() {
         FileHandler fileHander = new FileHandler(this.filename);
-        this.users = new Users();
-        fileHander.leerUsuarios();
-        fileHander.almacenarUsuarios(this.users.getUsers());
+        this.users =fileHander.leerUsuarios();
+       // fileHander.almacenarUsuarios(this.users.getUsers());
         this.session = new Session();
 
+
     }
+
 
     public Session getSession() {
         return session;
     }
 
-
-    private ActionListener btnIniciarSesionActionListener(){
-        ActionListener al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        };
-        return al;
+    public boolean login(String username, String password) {
+        User user = users.getUser(username);
+        if(user == null) {
+            return false;
+        }
+        return user.checkPassword(password);
     }
+
 }

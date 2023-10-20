@@ -12,28 +12,32 @@ public class FileHandler {
         this.file= new File(path);
     }
 
-    public void almacenarUsuarios(HashMap mapUsers) {
+    public void almacenarUsuarios(Users users) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))){
-            out.writeObject(mapUsers);
+            out.writeObject(users);
             System.out.println("usuarios almacenados en " + file.getName());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public  void leerUsuarios() {
-
+    public  Users leerUsuarios() {
+        Users users = new Users();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
-            HashMap<String,User> listaUsers = (HashMap) ois.readObject();
-
-            for (User usuario: listaUsers.values()) {
-                Users users = new Users();
-                users.addUser(usuario);
-                System.out.println(usuario.getPasswordHash());
-            }
-            System.out.println("usuarios obtenidos");
+            users = (Users) ois.readObject();
+            System.out.println("usuarios obtenidos" + users.getUsers());
+            return users;
         } catch (FileNotFoundException e) {
-            File file = new File("usuarios.bin");
+            try {
+                File file = new File("usuarios.bin");
+                file.createNewFile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            User user = new User("admin", "admin", 0, "admin@admin.local");
+            users.addUser(user);
+            almacenarUsuarios(users);
+            return users;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

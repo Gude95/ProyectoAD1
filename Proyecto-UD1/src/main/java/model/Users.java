@@ -1,14 +1,17 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Users {
-    private HashMap<String, User> users = new HashMap<>();
+public class Users implements Serializable {
+    private HashMap<String, User> users;
 
     public Users() {
-        User user = new User("admin","admin", 0, "admin@admin.local");
-        users.put(user.getName(),user);
+        this.users = new HashMap<>();
+
+
+
     }
 
     public HashMap<String, User> getUsers() {
@@ -21,5 +24,9 @@ public class Users {
 
     public  void addUser(User usuario) {
         users.put(usuario.getName(),usuario);
+    }
+
+    public User getUser(String user) {
+        return users.get(user);
     }
 }
