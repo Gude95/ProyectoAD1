@@ -131,5 +131,8 @@ public class UserDetails extends JFrame implements ActionListener {
 				System.out.println("Selección de archivo cancelada.");
 			}
 		}
+		if (e.getSource() == btnVolver){
+			dispose();
+		}
 	}
 }

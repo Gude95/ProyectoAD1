@@ -112,7 +112,7 @@ public class User extends JFrame implements ActionListener {
 			dispose();
 		}
 		if (e.getSource()== btnVerDatos){
-			new UserDetails(app,nombreUsuario,"","");
+			new UserDetails(app,nombreUsuario,String.valueOf(app.getUsers().getUser(nombreUsuario).getAge()),app.getUsers().getUser(nombreUsuario).getEmail());
 		}
 		if (e.getSource()== btnCambiarContraseña){
 			new UserChangePassword(app,nombreUsuario);
