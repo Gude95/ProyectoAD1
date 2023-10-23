@@ -28,6 +28,14 @@ public class App {
         return session;
     }
 
+    public Users getUsers() {
+        return users;
+    }
+
+    public FileHandler getFileHander() {
+        return fileHander;
+    }
+
     public boolean login(String username, String password) {
         User user = users.getUser(username);
         if(user == null) {
@@ -41,4 +49,11 @@ public class App {
         fileHander.almacenarUsuarios(users);
         System.out.println("Usuario " + username + " creado correctamente.");
     }
+
+    public void deleteUser(String username){
+        User user = users.getUser(username);
+        users.getUsers().remove(username);
+        System.out.println(username + " ha sido borrado");
+    }
+
 }
