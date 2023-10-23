@@ -56,4 +56,9 @@ public class App {
         System.out.println(username + " ha sido borrado");
     }
 
+    public void changePassword(String username,String newPassword){
+        User user = users.getUser(username);
+        user.setPassword(newPassword);
+    }
+
 }

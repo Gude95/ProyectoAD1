@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import model.App;
+import model.User;
 
 public class UserChangePassword extends JFrame implements ActionListener {
 
@@ -57,7 +58,14 @@ public class UserChangePassword extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+	if (e.getSource() == btnCambiarContraseña){
+		 app.changePassword(nombreUsuario, textoNuevoContraseña.getText());
+		System.out.println("contraseña cambiada correctamente");
+		app.getFileHander().almacenarUsuarios(app.getUsers());
+	}
+	if (e.getSource() == btnCancelar){
+		dispose();
+	}
 	}
 
 }
