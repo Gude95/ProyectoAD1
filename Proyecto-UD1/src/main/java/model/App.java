@@ -37,6 +37,10 @@ public class App {
         return user.checkPassword(password);
     }
 
+    public Session getSession() {
+        return session;
+    }
+
     public void createUser(String username, String password, int age, String mail) {
         users.addUser(new User(username,password,age,mail));
         fileHander.almacenarUsuarios(users);
