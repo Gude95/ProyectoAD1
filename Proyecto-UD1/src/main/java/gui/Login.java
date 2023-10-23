@@ -67,10 +67,7 @@ public class Login extends JFrame implements ActionListener {
 		if(e.getSource() == btnIniciarSesion) {
 			String user = textoUsuario.getText();
 			String pass = textoContraseña.getText();
-
 			app.login(user,pass);
-
-			Session session = app.getSession();
 			if (app.login(user,pass)){
 				new User(app,user);
 			} else {

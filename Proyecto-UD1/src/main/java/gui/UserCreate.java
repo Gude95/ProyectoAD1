@@ -105,14 +105,10 @@ public class UserCreate extends JFrame implements ActionListener {
 		 String pass = String.valueOf(textoContraseña.getPassword());
 		 int edad = Integer.parseInt(textoEdad.getText());
 		 String correo = textoCorreo.getText();
-		 /*
-		 User user = new User(nombre,pass,edad,correo);
-		 Users users = new Users();
-		 users.addUser(user);
-		 FileHandler fileHander = new FileHandler("usuarios.bin");
-		 fileHander.almacenarUsuarios(users.getUsers());
-		 System.out.println("usuario creado");
-		 */
+		 app.createUser(nombre,pass,edad,correo);
+	 }
+	 if (e.getSource() == btnCancelar) {
+		 dispose();
 	 }
 	}
 }

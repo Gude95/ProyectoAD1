@@ -52,6 +52,7 @@ public class UserChangePassword extends JFrame implements ActionListener {
 		btnCambiarContraseña.setBounds(124, 111, 89, 23);
 		btnCambiarContraseña.addActionListener(this);
 		contentPane.add(btnCambiarContraseña);
+		setVisible(true);
 	}
 
 	@Override

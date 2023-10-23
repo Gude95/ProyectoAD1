@@ -51,6 +51,7 @@ public class UserDelete extends JFrame implements ActionListener {
 		btnCancelar.setBounds(35, 56, 89, 23);
 		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
+		setVisible(true);
 	}
 
 	@Override

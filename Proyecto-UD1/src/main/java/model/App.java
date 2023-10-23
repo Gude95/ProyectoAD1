@@ -11,9 +11,11 @@ public class App {
     private Users users;
     private Session session;
 
+    private FileHandler fileHander;
+
 
     public App() {
-        FileHandler fileHander = new FileHandler(this.filename);
+        this.fileHander = new FileHandler(this.filename);
         this.users =fileHander.leerUsuarios();
        // fileHander.almacenarUsuarios(this.users.getUsers());
         this.session = new Session();
@@ -34,4 +36,9 @@ public class App {
         return user.checkPassword(password);
     }
 
+    public void createUser(String username, String password, int age, String mail) {
+        users.addUser(new User(username,password,age,mail));
+        fileHander.almacenarUsuarios(users);
+        System.out.println("Usuario " + username + " creado correctamente.");
+    }
 }

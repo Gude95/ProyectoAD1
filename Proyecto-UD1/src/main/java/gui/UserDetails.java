@@ -99,6 +99,7 @@ public class UserDetails extends JFrame implements ActionListener {
 
 		exportarMenu.add(xmlMenu);
 		exportarMenu.add(jsonMenu);
+		setVisible(true);
 	}
 
 	@Override

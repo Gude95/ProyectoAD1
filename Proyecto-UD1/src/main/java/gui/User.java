@@ -105,6 +105,18 @@ public class User extends JFrame implements ActionListener {
 		if(e.getSource()== btnCrearNuevoUsuario){
 			new UserCreate(app);
 		}
+		if (e.getSource()== btnBorrarUsuario){
+			new UserDelete(app,"");
+		}
+		if (e.getSource()== btnCerrarSesion){
+			dispose();
+		}
+		if (e.getSource()== btnVerDatos){
+			new UserDetails(app,"","","");
+		}
+		if (e.getSource()== btnCambiarContraseña){
+			new UserChangePassword(app,"");
+		}
 
 	}
 

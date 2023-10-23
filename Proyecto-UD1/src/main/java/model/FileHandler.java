@@ -26,7 +26,7 @@ public class FileHandler {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
             users = (Users) ois.readObject();
             System.out.println("usuarios obtenidos" + users.getUsers());
-            return users;
+
         } catch (FileNotFoundException e) {
             try {
                 File file = new File("usuarios.bin");
@@ -38,11 +38,13 @@ public class FileHandler {
             users.addUser(user);
             almacenarUsuarios(users);
             return users;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        }  catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return users;
     }
 
 
