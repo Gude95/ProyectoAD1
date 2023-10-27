@@ -1,9 +1,5 @@
 package model;
 
-import gui.Login;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class App {
@@ -19,6 +15,9 @@ public class App {
         this.session = new Session();
     }
 
+    public String getFilename() {
+        return filename;
+    }
 
     public Users getUsers() {
         return users;
@@ -38,6 +37,11 @@ public class App {
 
     public Session getSession() {
         return session;
+    }
+
+    public void zip(String nombreExportar, File filetozip) {
+        ZIP  zip = new ZIP();
+        zip.exportarZip(nombreExportar, filetozip);
     }
 
     public void createUser(String username, String password, int age, String mail) {
