@@ -9,6 +9,7 @@ public class App {
     private FileHandler fileHander;
 
     private XML xml;
+    private JSON json;
 
 
     public App() {
@@ -16,10 +17,15 @@ public class App {
         this.users =fileHander.leerUsuarios();
         this.session = new Session();
         this.xml = new XML();
+        this.json = new JSON();
     }
 
     public String getFilename() {
         return filename;
+    }
+
+    public JSON getJson() {
+        return json;
     }
 
     public XML getXml() {

@@ -22,7 +22,7 @@ public class FileHandler {
         Users users = new Users();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
             users = (Users) ois.readObject();
-            System.out.println("usuarios obtenidos" + users.getUsers());
+            System.out.println("usuarios obtenidos");
 
         } catch (FileNotFoundException e) {
             try {
