@@ -8,15 +8,22 @@ public class App {
     private Session session;
     private FileHandler fileHander;
 
+    private XML xml;
+
 
     public App() {
         this.fileHander = new FileHandler(this.filename);
         this.users =fileHander.leerUsuarios();
         this.session = new Session();
+        this.xml = new XML();
     }
 
     public String getFilename() {
         return filename;
+    }
+
+    public XML getXml() {
+        return xml;
     }
 
     public Users getUsers() {

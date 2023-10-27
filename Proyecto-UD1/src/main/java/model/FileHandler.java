@@ -1,9 +1,6 @@
 package model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 
 public class FileHandler {
     private File file ;
