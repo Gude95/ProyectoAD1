@@ -8,6 +8,7 @@ public class App {
     private Session session;
     private FileHandler fileHander;
 
+    private ZIP zip;
     private XML xml;
     private JSON json;
 
@@ -18,6 +19,7 @@ public class App {
         this.session = new Session();
         this.xml = new XML();
         this.json = new JSON();
+        this.zip= new ZIP();
     }
 
     public String getFilename() {
@@ -30,6 +32,10 @@ public class App {
 
     public XML getXml() {
         return xml;
+    }
+
+    public ZIP getZIP() {
+        return zip;
     }
 
     public Users getUsers() {
@@ -50,11 +56,6 @@ public class App {
 
     public Session getSession() {
         return session;
-    }
-
-    public void zip(String nombreExportar, File filetozip) {
-        ZIP  zip = new ZIP();
-        zip.exportarZip(nombreExportar, filetozip);
     }
 
     public void createUser(String username, String password, int age, String mail) {

@@ -5,8 +5,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ZIP {
- public void exportarZip(String exportarZip, File fileToZip){
-     System.out.println("mostrando metodo pruebaZip");
+ public void exportarZip(String exportarZip, File fileToZip, File fileXML, File fileJSON){
      try {
          FileOutputStream fos = new FileOutputStream(exportarZip);
          ZipOutputStream zipOut = new ZipOutputStream(fos);
@@ -20,9 +19,30 @@ public class ZIP {
          while((length = fis.read(bytes)) >= 0) {
              zipOut.write(bytes, 0, length);
          }
-
-         zipOut.close();
          fis.close();
+
+         // Comprimir fileXML
+         fis = new FileInputStream(fileXML);
+         zipEntry = new ZipEntry(fileXML.getName());
+         zipOut.putNextEntry(zipEntry);
+
+         while ((length = fis.read(bytes)) >= 0) {
+             zipOut.write(bytes, 0, length);
+         }
+         fis.close();
+
+         // Comprimir fileJSON
+         fis = new FileInputStream(fileJSON);
+         zipEntry = new ZipEntry(fileJSON.getName());
+         zipOut.putNextEntry(zipEntry);
+
+         while ((length = fis.read(bytes)) >= 0) {
+             zipOut.write(bytes, 0, length);
+         }
+         fis.close();
+
+
+            zipOut.close();
          fos.close();
 
          System.out.println("Compresión finalizada!");

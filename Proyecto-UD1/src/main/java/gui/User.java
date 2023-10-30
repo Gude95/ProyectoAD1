@@ -98,7 +98,13 @@ public class User extends JFrame implements ActionListener {
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = fileChooser.getSelectedFile();
 				File fileToZip = new File(app.getFilename());
-				app.zip(selectedFile.getAbsolutePath(),fileToZip);
+				File fileToXML = new File("zipxml.xml");
+				File fileToJSON = new File("zipJSON.json");
+				app.getXml().exportarXMLAdmin(fileToXML,app.getUsers());
+				app.getJson().exportarJSONAdmin(fileToJSON,app.getUsers());
+				app.getZIP().exportarZip(selectedFile.getAbsolutePath(),fileToZip,fileToXML,fileToJSON);
+				fileToXML.delete();
+				fileToJSON.delete();
 				System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
 			} else {
 				System.out.println("Selección de archivo cancelada.");

@@ -11,12 +11,9 @@ import java.io.IOException;
 
 public class JSON {
 public void exportarJSON(File exportarJson, User user){
-    /*
-    String jsonString = "{\"nombre\":\""+ nombre +"\",\"edad\":" + edad + "\",\"correo\":" + correo +"}";
-    JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
-    System.out.println(jsonObject);
-    */
+    String userString = "{\"nombre\":\""+ user.getName() +"\",\"edad\":" + user.getAge() + ",\"correo\":" + user.getEmail() +"}";
+    JsonObject userObject = JsonParser.parseString(userString).getAsJsonObject();
 
     // Crear una instancia de Gson
     GsonBuilder gsonBuilder = new GsonBuilder();
@@ -25,9 +22,30 @@ public void exportarJSON(File exportarJson, User user){
 
     // Convertir el objeto Java a JSON
     try (FileWriter writer = new FileWriter(exportarJson)) {
-        gson.toJson(user, writer);
+        gson.toJson(userObject, writer);
     } catch (IOException e) {
         e.printStackTrace();
+    }
+}
+
+public void exportarJSONAdmin(File exportarJson, Users users){
+
+    for (User user: users.getUsers().values()) {
+
+        String userString = "{\"nombre\":\"" + user.getName() + "\",\"edad\":" + user.getAge() + ",\"correo\":" + user.getEmail() + "}";
+        JsonObject userObject = JsonParser.parseString(userString).getAsJsonObject();
+
+        // Crear una instancia de Gson
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder = gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        // Convertir el objeto Java a JSON
+        try (FileWriter writer = new FileWriter(exportarJson, true)) {
+            gson.toJson(userObject, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 }
