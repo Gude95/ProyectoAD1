@@ -19,8 +19,9 @@ public class Session {
         this.user = null;
     }
 
-    public void inicioSesion(String user){
-        String login =LocalDate.now() + " " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " " + user + " LOGIN";
+    public void inicioSesion(User user){
+        this.user = user;
+        String login =LocalDate.now() + " " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " " + user.getName() + " LOGIN";
         System.out.println(login);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))){
             bw.write(login + "\n");
@@ -29,14 +30,15 @@ public class Session {
         }
     }
 
-    public void cierreSesion(String user){
-        String logout =LocalDate.now() + " " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " " + user + " LOGOUT";
+    public void cierreSesion(){
+        String logout =LocalDate.now() + " " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " " + user.getName() + " LOGOUT";
         System.out.println(logout);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))){
             bw.write(logout + "\n");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.user = null;
     }
 
 

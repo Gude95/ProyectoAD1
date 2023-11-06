@@ -69,7 +69,7 @@ public class Login extends JFrame implements ActionListener {
 			String pass = textoContraseña.getText();
 			app.login(user,pass);
 			if (app.login(user,pass)){
-				app.getSession().inicioSesion(user);
+				app.getSession().inicioSesion(app.getUsers().getUser(user));
 				new User(app,user);
 			} else {
 				JOptionPane.showMessageDialog(null,"Usuario y/o contraseña incorrectos", "Error",JOptionPane.WARNING_MESSAGE);
