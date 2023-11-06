@@ -72,7 +72,7 @@ public class Login extends JFrame implements ActionListener {
 				app.getSession().inicioSesion(user);
 				new User(app,user);
 			} else {
-				JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos", "Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Usuario y/o contraseña incorrectos", "Error",JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}

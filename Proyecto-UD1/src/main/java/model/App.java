@@ -1,21 +1,18 @@
 package model;
 
-import java.io.File;
-
 public class App {
     private final String filename = "usuarios.bin";
     private Users users;
     private Session session;
-    private FileHandler fileHander;
-
+    private FileHandler fileHandler;
     private ZIP zip;
     private XML xml;
     private JSON json;
 
 
     public App() {
-        this.fileHander = new FileHandler(this.filename);
-        this.users =fileHander.leerUsuarios();
+        this.fileHandler = new FileHandler(this.filename);
+        this.users = fileHandler.leerUsuarios();
         this.session = new Session();
         this.xml = new XML();
         this.json = new JSON();
@@ -42,8 +39,8 @@ public class App {
         return users;
     }
 
-    public FileHandler getFileHander() {
-        return fileHander;
+    public FileHandler getFileHandler() {
+        return fileHandler;
     }
 
     public boolean login(String username, String password) {
@@ -60,7 +57,7 @@ public class App {
 
     public void createUser(String username, String password, int age, String mail) {
         users.addUser(new User(username,password,age,mail));
-        fileHander.almacenarUsuarios(users);
+        fileHandler.almacenarUsuarios(users);
         System.out.println("Usuario " + username + " creado correctamente.");
     }
 

@@ -42,9 +42,6 @@ public class XML {
         }
     }
 
-
-
-
     public void exportarXMLAdmin(File exportarXML, Users users) {
         try {
             // Crear el DOM
