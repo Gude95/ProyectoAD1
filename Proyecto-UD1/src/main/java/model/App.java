@@ -8,6 +8,7 @@ public class App {
     private ZIP zip;
     private XML xml;
     private JSON json;
+    private PDF pdf;
 
 
     public App() {
@@ -17,6 +18,7 @@ public class App {
         this.xml = new XML();
         this.json = new JSON();
         this.zip= new ZIP();
+        this.pdf = new PDF();
     }
 
     public String getFilename() {
@@ -25,6 +27,10 @@ public class App {
 
     public JSON getJson() {
         return json;
+    }
+
+    public PDF getPdf() {
+        return pdf;
     }
 
     public XML getXml() {

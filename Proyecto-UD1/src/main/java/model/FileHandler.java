@@ -4,7 +4,7 @@ import java.io.*;
 
 public class FileHandler {
     private File file ;
-   private byte[] cabecera = {(byte)0xFF, (byte)0xEE, 0x20, 0x23, (byte)0xEE , (byte)0xFF};
+   private final byte[] cabecera = {(byte)0xFF, (byte)0xEE, 0x20, 0x23, (byte)0xEE , (byte)0xFF};
 
     public FileHandler(String path) {
         this.file= new File(path);
@@ -31,7 +31,7 @@ public class FileHandler {
         FileInputStream fis;
         try {
             fis = new FileInputStream(file);
-            boolean extension = ComprobarBytes(cabecera,fis);
+            boolean extension = comprobarBytes(cabecera,fis);
             if (extension) {
                 System.out.println("cabecera correcta!");
             } else {
@@ -67,7 +67,7 @@ public class FileHandler {
         return users;
     }
 
-    public static boolean ComprobarBytes ( byte[] magicNumbers, FileInputStream fis) {
+    public static boolean comprobarBytes(byte[] magicNumbers, FileInputStream fis) {
         boolean extesiontrue = true;
         try {
             for (int i= 0; i<magicNumbers.length;i++){

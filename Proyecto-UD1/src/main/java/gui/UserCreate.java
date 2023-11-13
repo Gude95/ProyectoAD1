@@ -106,6 +106,7 @@ public class UserCreate extends JFrame implements ActionListener {
 		 int edad = Integer.parseInt(textoEdad.getText());
 		 String correo = textoCorreo.getText();
 		 app.createUser(nombre,pass,edad,correo);
+		 this.dispose();
 	 }
 	 if (e.getSource() == btnCancelar) {
 		 dispose();
