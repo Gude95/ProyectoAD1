@@ -9,6 +9,7 @@ public class App {
     private XML xml;
     private JSON json;
     private PDF pdf;
+    private CSV csv;
 
 
     public App() {
@@ -19,6 +20,7 @@ public class App {
         this.json = new JSON();
         this.zip= new ZIP();
         this.pdf = new PDF();
+        this.csv = new CSV();
     }
 
     public String getFilename() {
@@ -31,6 +33,10 @@ public class App {
 
     public PDF getPdf() {
         return pdf;
+    }
+
+    public CSV getCsv() {
+        return csv;
     }
 
     public XML getXml() {

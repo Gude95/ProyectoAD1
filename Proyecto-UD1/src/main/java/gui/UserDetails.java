@@ -24,6 +24,7 @@ public class UserDetails extends JFrame implements ActionListener {
     private JMenuItem xmlMenu;
     private JMenuItem jsonMenu;
     private JMenuItem pdfMenu;
+    private JMenuItem csvMenu;
 
     private App app;
 
@@ -95,15 +96,18 @@ public class UserDetails extends JFrame implements ActionListener {
         xmlMenu = new JMenuItem("XML");
         jsonMenu = new JMenuItem("JSON");
         pdfMenu = new JMenuItem("PDF");
+        csvMenu = new JMenuItem("CSV");
 
         xmlMenu.addActionListener(this);
         jsonMenu.addActionListener(this);
         pdfMenu.addActionListener(this);
+        csvMenu.addActionListener(this);
 
 
         exportarMenu.add(xmlMenu);
         exportarMenu.add(jsonMenu);
         exportarMenu.add(pdfMenu);
+        exportarMenu.add(csvMenu);
         setVisible(true);
     }
 
@@ -165,6 +169,24 @@ public class UserDetails extends JFrame implements ActionListener {
                 String email = datoCorreo.getText();
                 app.getPdf().generarPDF(selectedFile, nombre, edad, email);
 
+            }
+        }
+
+        if (e.getSource() == csvMenu) {
+            if (datoNombre.getText().equals("admin")){
+            System.out.println("Exportar usuarios (CSV)");
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setSelectedFile(new File("usuarios.csv"));
+            int returnValue = fileChooser.showOpenDialog(null);
+
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+
+                app.getCsv().extraerCSV(selectedFile, app.getUsers());
+
+            }
+        } else {
+                JOptionPane.showMessageDialog(this,"Solo se puede exportar a CSV siendo usuario administrador","error",JOptionPane.WARNING_MESSAGE);
             }
         }
 
