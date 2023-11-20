@@ -124,11 +124,7 @@ public class UserDetails extends JFrame implements ActionListener {
                 String nombre = datoNombre.getText();
                 String edad = datoEdad.getText();
                 String email = datoCorreo.getText();
-                if (!nombre.equals("admin")) {
-                    app.getXml().exportarXML(selectedFile, nombre, edad, email);
-                } else {
-                    app.getXml().exportarXMLAdmin(selectedFile, app.getUsers());
-                }
+                app.getXml().exportarXML(selectedFile, nombre, edad, email);
                 System.out.println(datoNombre.getText());
                 System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
             } else {
@@ -145,11 +141,7 @@ public class UserDetails extends JFrame implements ActionListener {
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
                 String nombre = datoNombre.getText();
-                if (!nombre.equals("admin")) {
-                    app.getJson().exportarJSON(selectedFile, app.getUsers().getUser(nombre));
-                } else {
-                    app.getJson().exportarJSONAdmin(selectedFile, app.getUsers());
-                }
+                app.getJson().exportarJSON(selectedFile, app.getUsers().getUser(nombre));
                 System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
             } else {
                 System.out.println("Selección de archivo cancelada.");

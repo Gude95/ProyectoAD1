@@ -3,44 +3,44 @@ package model;
 import java.io.*;
 
 public class FileHandler {
-    private File file ;
-   private final byte[] cabecera = {(byte)0xFF, (byte)0xEE, 0x20, 0x23, (byte)0xEE , (byte)0xFF};
+    private File file;
+    private final byte[] cabecera = {(byte) 0xFF, (byte) 0xEE, 0x20, 0x23, (byte) 0xEE, (byte) 0xFF};
 
     public FileHandler(String path) {
-        this.file= new File(path);
+        this.file = new File(path);
     }
 
     public void almacenarUsuarios(Users users) {
-        FileOutputStream fos;
+        FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);
             fos.write(cabecera);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
-        try (ObjectOutputStream out = new ObjectOutputStream(fos)){
+        try (ObjectOutputStream out = new ObjectOutputStream(fos)) {
             out.writeObject(users);
             System.out.println("usuarios almacenados en " + file.getName());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
     }
 
-    public  Users leerUsuarios() {
+    public Users leerUsuarios() {
         Users users = new Users();
         FileInputStream fis;
         try {
             fis = new FileInputStream(file);
-            boolean extension = comprobarBytes(cabecera,fis);
+            boolean extension = comprobarBytes(fis);
             if (extension) {
                 System.out.println("cabecera correcta!");
             } else {
                 System.err.println("cabecera incorrecta!");
             }
-            try (ObjectInputStream ois = new ObjectInputStream(fis)){
+            try (ObjectInputStream ois = new ObjectInputStream(fis)) {
                 users = (Users) ois.readObject();
                 User user = users.getUser("admin");
-                if (user==null){
+                if (user == null) {
                     user = new User("admin", "admin", 0, "admin@admin.local");
                     users.addUser(user);
                     almacenarUsuarios(users);
@@ -50,7 +50,7 @@ public class FileHandler {
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }  catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } catch (FileNotFoundException e) {
@@ -67,12 +67,12 @@ public class FileHandler {
         return users;
     }
 
-    public static boolean comprobarBytes(byte[] magicNumbers, FileInputStream fis) {
+    private boolean comprobarBytes(FileInputStream fis) {
         boolean extesiontrue = true;
         try {
-            for (int i= 0; i<magicNumbers.length;i++){
-                byte b = (byte)fis.read();
-                if(b!=magicNumbers[i]){
+            for (int i = 0; i < cabecera.length; i++) {
+                byte b = (byte) fis.read();
+                if (b != cabecera[i]) {
                     extesiontrue = false;
                     break;
                 }
